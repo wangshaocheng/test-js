@@ -2,6 +2,7 @@ test-js
 =======
 
 git提交修改的命令
+在一个临时目录里下载下来最新的项目文件git clone https://github.com/wangshaocheng/test-js.git \n
 进入到项目的根目录 \n
 git init \n
 git add .  \n
