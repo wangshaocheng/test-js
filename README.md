@@ -1,6 +1,14 @@
 test-js
 =======
 
+git提交修改的命令
+进入到项目的根目录
+git init
+git add .
+git commit
+git remote add origin https://github.com/wangshaocheng/test-js.git(如果是首次提交的时候执行该命令)
+git push -u origin master
+
 熟悉js和jquery的前端开发
 
 test-js-table.html
