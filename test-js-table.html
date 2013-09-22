@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!--
+1实现执行的是jquery的ready事件，然后是onload事件
+2一个小练习，可以计算出所有计件件数值得平均值。练习的要点是，可以用jquery取得一个table中任意特定一行的任意特定一个单元格里的input的value或者是span的text值。
+-->
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+		<title>test js/jquery</title>
+		<script src="jquery-1.8.3.js"></script>
+		<script>
+			$(function() {
+				//alert("ready事件");
+				var trObjs = $("table[id='group1Month'] > tbody > tr");
+				//alert(trObjs.length);
+				var regQunlityNum = /group1Month_[\d]{1,}_qunlityNum/;
+				var summQunlityNum = 0;
+				var numQunlityNum = 0;
+				//alert(regQunlityNum.test("group1Month_11_qunlityNum"));
+				//除去第一行和最后一行的行为有效行，即该行可以获取到计件件数这个数据然后计算出所有的计件件数的平均值
+				for (var i = 1, len = trObjs.length; i < len; i++) {
+					var tdObjs = trObjs.eq(i).children();
+					var elements = tdObjs.find("select,input,a,div,span");
+					elements.each(function() {
+						if(regQunlityNum.test($(this).attr("id"))) {
+							summQunlityNum += parseInt($(this).text());
+							numQunlityNum ++;
+						}
+						
+					});
+				}
+				if(numQunlityNum != 0) {
+					//计算出所有计件件数的平均值
+					alert(summQunlityNum / numQunlityNum);
+				}
+			});
+			
+			function loadfun() {
+				//alert("onload事件");
+			}
+		</script>
+	</head>
+	<body onload="loadfun();">
+		<table id="group1Month">
+		<tr>
+			<td>工号</td>
+			<td>类别</td>
+			<td>计件件数</td>
+		</tr>
+		<tr>
+			<td>32</td>
+			<td>A</td>
+			<td><span id="group1Month_1_qunlityNum">200</span></td>
+		</tr>
+		<tr>
+			<td>33</td>
+			<td>B</td>
+			<td><span id="group1Month_2_qunlityNum">190</span></td>
+		</tr>
+		<tr>
+			<td>34</td>
+			<td>A</td>
+			<td><span id="group1Month_3_qunlityNum">203</span></td>
+		</tr>
+		<tr>
+			<td>合计</td>
+			<td></td>
+			<td>593</td>
+		</tr>						
+		</table>
+		<hr/>
+		<div id="showDiv"></div>
+	</body>
+</html>
