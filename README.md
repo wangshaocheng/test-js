@@ -6,7 +6,7 @@ git提交修改的命令
 进入到项目的根目录 \n
 git init \n
 git add .  \n
-git commit \n
+git commit -m 'initial' \n
 git remote add  origin https://github.com/wangshaocheng/test-js.git(如果是首次提交的时候执行该命令)\n
 git push -u origin master \n
 
